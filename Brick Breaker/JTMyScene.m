@@ -28,13 +28,17 @@
     NSArray *_hearts;
     SKLabelNode *_levelDisplay;
     JTMenu  *_menu;
-
+    SKAction *_ballBounceSound;
+    SKAction *_paddleBounceSound;
+    SKAction *_levelUpSound;
+    SKAction *_loseLifeSound;
 }
 
 static const uint32_t kFinalLevelNumber = 5;
 
 static const uint32_t kBallCategory   = 0x1 << 0;
 static const uint32_t kPaddleCategory = 0x1 << 1;
+static const uint32_t kEdgeCategory   = 0x1 << 3;
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -56,6 +60,7 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
         
         // Setup edge.
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, -125, size.width, size.height + 100)];
+        self.physicsBody.categoryBitMask = kEdgeCategory;
         
         // Setup level display
         _levelDisplay = [SKLabelNode labelNodeWithFontNamed:@"Futura"];
@@ -66,6 +71,11 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
         _levelDisplay.position = CGPointMake(10, -5);
         [bar addChild:_levelDisplay];
         
+        // Setup Sounds
+        _ballBounceSound = [SKAction playSoundFileNamed:@"BallBounce.caf" waitForCompletion:NO];
+        _paddleBounceSound = [SKAction playSoundFileNamed:@"PaddleBounce.caf" waitForCompletion:NO];
+        _levelUpSound = [SKAction playSoundFileNamed:@"LevelUp.caf" waitForCompletion:NO];
+        _loseLifeSound = [SKAction playSoundFileNamed:@"LoseLife.caf" waitForCompletion:NO];
         
         // Setup brick layer.
         _brickLayer = [SKNode node];
@@ -170,7 +180,7 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
     ball.physicsBody.restitution = 1.0; // how much the ball bounces
     ball.physicsBody.velocity = velocity; // speed the ball moves
     ball.physicsBody.categoryBitMask = kBallCategory; // adds the ball to a bitMask category
-    ball.physicsBody.contactTestBitMask = kPaddleCategory | kBrickCategory; // look for contacts between the categories
+    ball.physicsBody.contactTestBitMask = kPaddleCategory | kBrickCategory | kEdgeCategory; // look for contacts between the categories
     [self addChild:ball]; // add the ball to the screen
     return ball;
 }
@@ -187,13 +197,14 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
         secondBody = contact.bodyB; // Sets the secondBody to be bodyB as it has a higher category bit mask than bodyA
     }
     if (firstBody.categoryBitMask == kBallCategory && secondBody.categoryBitMask == kBrickCategory) {
-        if (firstBody.categoryBitMask == kBallCategory && secondBody.categoryBitMask == kBrickCategory) {
-            if ([secondBody.node respondsToSelector:@selector(hit)]) {
-                [secondBody.node performSelector:@selector(hit)];
-            }
+        if ([secondBody.node respondsToSelector:@selector(hit)]) {
+            [secondBody.node performSelector:@selector(hit)];
         }
+        [self runAction:_ballBounceSound];
     }
-    
+    if (firstBody.categoryBitMask == kBallCategory && secondBody.categoryBitMask == kEdgeCategory) {
+        [self runAction:_ballBounceSound];
+    }
     if (firstBody.categoryBitMask == kBallCategory && secondBody.categoryBitMask == kPaddleCategory) {
         if (firstBody.node.position.y > secondBody.node.position.y) {
             // Get contact point in paddle coordinates.
@@ -209,6 +220,7 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
             // Set ball's velocity based on direction and speed.
             firstBody.velocity = CGVectorMake(direction.dx * _ballSpeed /* Takes balls x direction * by ball's speed */, direction.dy * _ballSpeed); // Takes balls y direction * by ball's speed
         }
+        [self runAction:_paddleBounceSound];
     }
 }
 
@@ -281,12 +293,14 @@ static const uint32_t kPaddleCategory = 0x1 << 1;
             self.currentLevel = 1;
             self.lives = 3;
         }
+        [self runAction:_levelUpSound];
         [self loadLevel:self.currentLevel];
         [self newBall];
         [_menu show];
     } else if (_ballReleased && !_positionBall && ![self childNodeWithName:@"ball"]) {
         // Lost all balls.
         self.lives--;
+        [self runAction:_loseLifeSound];
         if (self.lives < 0) {
             // Game Over
             self.lives = 3;

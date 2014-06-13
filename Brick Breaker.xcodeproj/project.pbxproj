@@ -48,6 +48,11 @@
 		18AC84BD194AF41C008F0BD4 /* BrickRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84BB194AF41C008F0BD4 /* BrickRed@2x.png */; };
 		18AC84BE194AF41C008F0BD4 /* BrickRedCracked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */; };
 		18AC84C2194AFC49008F0BD4 /* JTMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC84C1194AFC49008F0BD4 /* JTMenu.m */; };
+		18AC84C9194B29EA008F0BD4 /* BallBounce.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C4194B29EA008F0BD4 /* BallBounce.caf */; };
+		18AC84CA194B29EA008F0BD4 /* BrickSmash.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C5194B29EA008F0BD4 /* BrickSmash.caf */; };
+		18AC84CB194B29EA008F0BD4 /* LevelUp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C6194B29EA008F0BD4 /* LevelUp.caf */; };
+		18AC84CC194B29EA008F0BD4 /* LoseLife.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C7194B29EA008F0BD4 /* LoseLife.caf */; };
+		18AC84CD194B29EA008F0BD4 /* PaddleBounce.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C8194B29EA008F0BD4 /* PaddleBounce.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +115,11 @@
 		18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrickRedCracked@2x.png"; sourceTree = "<group>"; };
 		18AC84C0194AFC49008F0BD4 /* JTMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTMenu.h; sourceTree = "<group>"; };
 		18AC84C1194AFC49008F0BD4 /* JTMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTMenu.m; sourceTree = "<group>"; };
+		18AC84C4194B29EA008F0BD4 /* BallBounce.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BallBounce.caf; sourceTree = "<group>"; };
+		18AC84C5194B29EA008F0BD4 /* BrickSmash.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BrickSmash.caf; sourceTree = "<group>"; };
+		18AC84C6194B29EA008F0BD4 /* LevelUp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LevelUp.caf; sourceTree = "<group>"; };
+		18AC84C7194B29EA008F0BD4 /* LoseLife.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoseLife.caf; sourceTree = "<group>"; };
+		18AC84C8194B29EA008F0BD4 /* PaddleBounce.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PaddleBounce.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,6 +193,7 @@
 				182A5FC31949DE4E00076607 /* JTBrick.h */,
 				182A5FC41949DE4E00076607 /* JTBrick.m */,
 				182A5F7E1949D6ED00076607 /* Images.xcassets */,
+				18AC84C3194B29EA008F0BD4 /* Sounds */,
 				18AC84BF194AF880008F0BD4 /* Particale Effects */,
 				182A5F9B1949D70D00076607 /* Images */,
 				182A5F681949D6ED00076607 /* Supporting Files */,
@@ -254,6 +265,18 @@
 				182A5FCF194A21C200076607 /* spark.png */,
 			);
 			name = "Particale Effects";
+			sourceTree = "<group>";
+		};
+		18AC84C3194B29EA008F0BD4 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				18AC84C4194B29EA008F0BD4 /* BallBounce.caf */,
+				18AC84C5194B29EA008F0BD4 /* BrickSmash.caf */,
+				18AC84C6194B29EA008F0BD4 /* LevelUp.caf */,
+				18AC84C7194B29EA008F0BD4 /* LoseLife.caf */,
+				18AC84C8194B29EA008F0BD4 /* PaddleBounce.caf */,
+			);
+			path = Sounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -334,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				182A5FB11949D70D00076607 /* BrickBlue@2x.png in Resources */,
+				18AC84CA194B29EA008F0BD4 /* BrickSmash.caf in Resources */,
 				182A5F6C1949D6ED00076607 /* InfoPlist.strings in Resources */,
 				182A5F7F1949D6ED00076607 /* Images.xcassets in Resources */,
 				182A5FB31949D70D00076607 /* BrickGrey@2x.png in Resources */,
@@ -345,18 +369,22 @@
 				182A5FAE1949D70D00076607 /* Background@2x.png in Resources */,
 				182A5FB51949D70D00076607 /* Button@2x.png in Resources */,
 				18AC84BE194AF41C008F0BD4 /* BrickRedCracked@2x.png in Resources */,
+				18AC84CD194B29EA008F0BD4 /* PaddleBounce.caf in Resources */,
+				18AC84CC194B29EA008F0BD4 /* LoseLife.caf in Resources */,
 				18AC84BA194AF233008F0BD4 /* BrickRedExplosion.sks in Resources */,
 				182A5FB71949D70D00076607 /* HeartFull@2x.png in Resources */,
 				182A5FBA1949D70D00076607 /* PaddleRed@2x.png in Resources */,
 				182A5FBB1949D70D00076607 /* Pause@2x.png in Resources */,
 				182A5FD1194A21C200076607 /* spark.png in Resources */,
 				182A5FBD1949D70D00076607 /* PurpleSquareSelected@2x.png in Resources */,
+				18AC84C9194B29EA008F0BD4 /* BallBounce.caf in Resources */,
 				182A5FBF1949D70D00076607 /* Start@2x.png in Resources */,
 				182A5FB61949D70D00076607 /* HeartEmpty@2x.png in Resources */,
 				18AC84BD194AF41C008F0BD4 /* BrickRed@2x.png in Resources */,
 				182A5FAF1949D70D00076607 /* BallBlue@2x.png in Resources */,
 				182A5FB01949D70D00076607 /* BallGrey@2x.png in Resources */,
 				182A5FD0194A21C200076607 /* BrickGreenExplosion.sks in Resources */,
+				18AC84CB194B29EA008F0BD4 /* LevelUp.caf in Resources */,
 				182A5FB21949D70D00076607 /* BrickGreen@2x.png in Resources */,
 				182A5FB41949D70D00076607 /* BrickYellow@2x.png in Resources */,
 			);

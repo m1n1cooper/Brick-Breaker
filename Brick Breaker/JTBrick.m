@@ -9,6 +9,9 @@
 #import "JTBrick.h"
 
 @implementation JTBrick
+{
+    SKAction *_brickSmashSound;
+}
 
 -(instancetype)initWithType:(BrickType)type
 {
@@ -38,6 +41,8 @@
         self.physicsBody.dynamic = NO;
         self.type = type;
         self.indestructible = (type == Grey);
+        
+        _brickSmashSound = [SKAction playSoundFileNamed:@"BrickSmash.caf" waitForCompletion:NO];
     }
     return self;
 }
@@ -47,6 +52,7 @@
     switch (self.type) {
         case Green:
             [self createGreenExplosion];
+            [self runAction:_brickSmashSound];
             [self runAction:[SKAction removeFromParent]];
             break;
         case Blue:
@@ -59,6 +65,7 @@
             break;
         case RedCracked:
             [self createRedExplosion];
+            [self runAction:_brickSmashSound];
             [self runAction:[SKAction removeFromParent]];
             break;
         default:

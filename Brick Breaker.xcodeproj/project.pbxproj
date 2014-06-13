@@ -53,6 +53,8 @@
 		18AC84CB194B29EA008F0BD4 /* LevelUp.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C6194B29EA008F0BD4 /* LevelUp.caf */; };
 		18AC84CC194B29EA008F0BD4 /* LoseLife.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C7194B29EA008F0BD4 /* LoseLife.caf */; };
 		18AC84CD194B29EA008F0BD4 /* PaddleBounce.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84C8194B29EA008F0BD4 /* PaddleBounce.caf */; };
+		18AC84D0194B7995008F0BD4 /* BrickPurple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84CF194B7995008F0BD4 /* BrickPurple@2x.png */; };
+		18AC84D2194B8BEB008F0BD4 /* GainLife.caf in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84D1194B8BEB008F0BD4 /* GainLife.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -120,6 +122,8 @@
 		18AC84C6194B29EA008F0BD4 /* LevelUp.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LevelUp.caf; sourceTree = "<group>"; };
 		18AC84C7194B29EA008F0BD4 /* LoseLife.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoseLife.caf; sourceTree = "<group>"; };
 		18AC84C8194B29EA008F0BD4 /* PaddleBounce.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = PaddleBounce.caf; sourceTree = "<group>"; };
+		18AC84CF194B7995008F0BD4 /* BrickPurple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrickPurple@2x.png"; sourceTree = "<group>"; };
+		18AC84D1194B8BEB008F0BD4 /* GainLife.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = GainLife.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -233,11 +237,12 @@
 		182A5F9B1949D70D00076607 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				18AC84BB194AF41C008F0BD4 /* BrickRed@2x.png */,
-				18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */,
 				182A5F9C1949D70D00076607 /* Background@2x.png */,
 				182A5F9D1949D70D00076607 /* BallBlue@2x.png */,
 				182A5F9E1949D70D00076607 /* BallGrey@2x.png */,
+				18AC84CF194B7995008F0BD4 /* BrickPurple@2x.png */,
+				18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */,
+				18AC84BB194AF41C008F0BD4 /* BrickRed@2x.png */,
 				182A5F9F1949D70D00076607 /* BrickBlue@2x.png */,
 				182A5FA01949D70D00076607 /* BrickGreen@2x.png */,
 				182A5FA11949D70D00076607 /* BrickGrey@2x.png */,
@@ -270,6 +275,7 @@
 		18AC84C3194B29EA008F0BD4 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				18AC84D1194B8BEB008F0BD4 /* GainLife.caf */,
 				18AC84C4194B29EA008F0BD4 /* BallBounce.caf */,
 				18AC84C5194B29EA008F0BD4 /* BrickSmash.caf */,
 				18AC84C6194B29EA008F0BD4 /* LevelUp.caf */,
@@ -358,9 +364,11 @@
 			files = (
 				182A5FB11949D70D00076607 /* BrickBlue@2x.png in Resources */,
 				18AC84CA194B29EA008F0BD4 /* BrickSmash.caf in Resources */,
+				18AC84D2194B8BEB008F0BD4 /* GainLife.caf in Resources */,
 				182A5F6C1949D6ED00076607 /* InfoPlist.strings in Resources */,
 				182A5F7F1949D6ED00076607 /* Images.xcassets in Resources */,
 				182A5FB31949D70D00076607 /* BrickGrey@2x.png in Resources */,
+				18AC84D0194B7995008F0BD4 /* BrickPurple@2x.png in Resources */,
 				182A5FB91949D70D00076607 /* Paddle@2x.png in Resources */,
 				182A5FCD194A0C1500076607 /* Main.storyboard in Resources */,
 				182A5FBC1949D70D00076607 /* PurpleSquare@2x.png in Resources */,

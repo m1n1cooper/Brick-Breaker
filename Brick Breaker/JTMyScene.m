@@ -32,13 +32,15 @@
     SKAction *_paddleBounceSound;
     SKAction *_levelUpSound;
     SKAction *_loseLifeSound;
+    SKAction *_gainLifeSound;
 }
 
-static const uint32_t kFinalLevelNumber = 5;
+static const uint32_t kFinalLevelNumber = 6;
 
-static const uint32_t kBallCategory   = 0x1 << 0;
-static const uint32_t kPaddleCategory = 0x1 << 1;
-static const uint32_t kEdgeCategory   = 0x1 << 3;
+static const uint32_t kBallCategory      = 0x1 << 0;
+static const uint32_t kPaddleCategory    = 0x1 << 1;
+static const uint32_t kEdgeCategory      = 0x1 << 3;
+static const uint32_t kExtraLifeCategory = 0x1 << 4;
 
 -(id)initWithSize:(CGSize)size {
     if (self = [super initWithSize:size]) {
@@ -55,8 +57,8 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
         // Set contact delgate.
         self.physicsWorld.contactDelegate = self;
         
-        // Turn off gravity.
-        self.physicsWorld.gravity = CGVectorMake(0.0, 0.0);
+        // Turn gravity off
+        self.physicsWorld.gravity = CGVectorMake(0, 0);
         
         // Setup edge.
         self.physicsBody = [SKPhysicsBody bodyWithEdgeLoopFromRect:CGRectMake(0, -125, size.width, size.height + 100)];
@@ -76,6 +78,7 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
         _paddleBounceSound = [SKAction playSoundFileNamed:@"PaddleBounce.caf" waitForCompletion:NO];
         _levelUpSound = [SKAction playSoundFileNamed:@"LevelUp.caf" waitForCompletion:NO];
         _loseLifeSound = [SKAction playSoundFileNamed:@"LoseLife.caf" waitForCompletion:NO];
+        _gainLifeSound = [SKAction playSoundFileNamed:@"GainLife.caf" waitForCompletion:NO];
         
         // Setup brick layer.
         _brickLayer = [SKNode node];
@@ -101,7 +104,7 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
         _paddle.position = CGPointMake(self.size.width/2, 90); // sets the paddle position
         _paddle.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:_paddle.size]; // gives the paddle a physics body
         _paddle.physicsBody.dynamic = NO; // paddle can be bounced off but will not be moved by other physic bodies
-        _paddle.physicsBody.categoryBitMask = kPaddleCategory; // adds the paddle to a bitmask category
+        _paddle.physicsBody.categoryBitMask = kPaddleCategory;// adds the paddle to a bitmask category
         [self addChild:_paddle];// adds paddle to the screen
         
         // Setup menu
@@ -181,8 +184,42 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
     ball.physicsBody.velocity = velocity; // speed the ball moves
     ball.physicsBody.categoryBitMask = kBallCategory; // adds the ball to a bitMask category
     ball.physicsBody.contactTestBitMask = kPaddleCategory | kBrickCategory | kEdgeCategory; // look for contacts between the categories
+    ball.physicsBody.collisionBitMask = kPaddleCategory | kBrickCategory | kEdgeCategory;
     [self addChild:ball]; // add the ball to the screen
     return ball;
+}
+
+-(void)spawnExtraBall:(CGPoint)position
+{
+    CGVector direction;
+    if (arc4random_uniform(2) == 0) {
+        direction = CGVectorMake(cosf(M_PI_4), sinf(M_PI_4));
+    } else {
+        direction = CGVectorMake(cosf(M_PI * 0.75), sinf(M_PI * 0.75));
+    }
+    [self createBallWithLocation:position andVelocity:CGVectorMake(direction.dx * _ballSpeed, direction.dy * _ballSpeed)];
+}
+
+-(void)makeExtraLife:(CGPoint)position andVelocity:(CGVector)velocity
+{
+    SKSpriteNode *extraLife = [SKSpriteNode spriteNodeWithImageNamed:@"HeartFull"];
+    extraLife.position = position;
+    extraLife.physicsBody = [SKPhysicsBody bodyWithRectangleOfSize:extraLife.size];
+    extraLife.physicsBody.velocity = velocity;
+    extraLife.physicsBody.linearDamping = 0.0;
+    extraLife.name = @"ExtraLife";
+    extraLife.physicsBody.categoryBitMask = kExtraLifeCategory;
+    extraLife.physicsBody.collisionBitMask = kPaddleCategory;
+    extraLife.physicsBody.contactTestBitMask = kPaddleCategory;
+    [self addChild:extraLife];
+}
+
+-(void)spawnExtraLife:(CGPoint)position
+{
+    CGVector direction;
+    direction = CGVectorMake(0, -50);
+    
+    [self makeExtraLife:position andVelocity:CGVectorMake(direction.dx, direction.dy)];
 }
 
 -(void)didBeginContact:(SKPhysicsContact *)contact
@@ -196,9 +233,24 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
         firstBody = contact.bodyA; // Sets the firstBody to be bodyA as it has a lower category bit mask than bodyB
         secondBody = contact.bodyB; // Sets the secondBody to be bodyB as it has a higher category bit mask than bodyA
     }
+    if (firstBody.categoryBitMask == kPaddleCategory && secondBody.categoryBitMask == kExtraLifeCategory) {
+        if (self.lives < 3) {
+            self.lives++;
+            [self runAction:_gainLifeSound];
+            [secondBody.node removeFromParent];
+        } else {
+            [secondBody.node removeFromParent];
+        }
+    }
     if (firstBody.categoryBitMask == kBallCategory && secondBody.categoryBitMask == kBrickCategory) {
         if ([secondBody.node respondsToSelector:@selector(hit)]) {
             [secondBody.node performSelector:@selector(hit)];
+            if (((JTBrick *)secondBody.node).spawnsExtraLife) {
+                [self spawnExtraLife:[_brickLayer convertPoint:secondBody.node.position toNode:self]];
+            }
+            if (((JTBrick *)secondBody.node).spawnsExtraBall) {
+                [self spawnExtraBall:[_brickLayer convertPoint:secondBody.node.position toNode:self]];
+            }
         }
         [self runAction:_ballBounceSound];
     }
@@ -246,6 +298,12 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
             
             CGFloat paddleMinX = -_paddle.size.width/4;
             CGFloat paddleMaxX = self.size.width + (_paddle.size.width/4);
+            
+            if (_positionBall) {
+                paddleMinX = _paddle.size.width/2;
+                paddleMaxX = self.size.width - (_paddle.size.width/2);  
+            }
+            
             // Cap paddle's position so it remains on screen.
             if (_paddle.position.x < paddleMinX) {
                 _paddle.position = CGPointMake(paddleMinX, _paddle.position.y);
@@ -283,6 +341,12 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
             [node removeFromParent];
         }
     }];
+    [self enumerateChildNodesWithName:@"ExtraLife" usingBlock:^(SKNode *node, BOOL *stop) {
+        if (node.frame.origin.y + node.frame.size.height < 0) {
+            // Extra life has gone off the screen
+            [node removeFromParent];
+        }
+    }];
 }
 
 -(void)update:(CFTimeInterval)currentTime {
@@ -301,7 +365,7 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
         // Lost all balls.
         self.lives--;
         [self runAction:_loseLifeSound];
-        if (self.lives < 0) {
+        if (self.lives < 1) {
             // Game Over
             self.lives = 3;
             self.currentLevel = 1;
@@ -315,6 +379,9 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
 -(void)loadLevel:(int)levelNumber
 {
     [_brickLayer removeAllChildren];
+    [self enumerateChildNodesWithName:@"ExtraLife" usingBlock:^(SKNode *node, BOOL *stop) {
+        [node removeFromParent];
+    }];
     
     NSArray *level = nil;
     switch (levelNumber) {
@@ -326,7 +393,7 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
                       @[@0,@2,@2,@2,@2,@0]];
             break;
         case 2:
-            level = @[@[@1,@1,@2,@2,@1,@1],
+            level = @[@[@6,@1,@2,@2,@1,@6],
                       @[@2,@2,@0,@0,@2,@2],
                       @[@2,@0,@0,@0,@0,@2],
                       @[@0,@0,@1,@1,@0,@0],
@@ -334,27 +401,35 @@ static const uint32_t kEdgeCategory   = 0x1 << 3;
                       @[@1,@1,@3,@3,@1,@1]];
             break;
         case 3:
-            level = @[@[@1,@0,@1,@1,@0,@1],
+            level = @[@[@1,@0,@7,@1,@0,@1],
                       @[@1,@0,@1,@1,@0,@1],
                       @[@0,@0,@3,@3,@0,@0],
                       @[@2,@0,@0,@0,@0,@2],
-                      @[@0,@0,@1,@1,@0,@0],
+                      @[@0,@0,@6,@6,@0,@0],
                       @[@3,@2,@1,@1,@2,@3]];
             break;
         case 4:
-            level = @[@[@1,@2,@1,@1,@2,@1],
+            level = @[@[@1,@2,@6,@6,@2,@1],
                       @[@2,@0,@2,@2,@0,@2],
                       @[@1,@2,@1,@1,@2,@1],
                       @[@1,@0,@2,@2,@0,@1],
                       @[@2,@1,@0,@0,@1,@2],
                       @[@4,@4,@3,@3,@4,@4]];
         case 5:
-            level = @[@[@1,@2,@1,@1,@2,@1],
+            level = @[@[@1,@2,@7,@1,@2,@1],
                       @[@2,@0,@2,@2,@0,@2],
-                      @[@1,@2,@1,@1,@2,@1],
-                      @[@1,@2,@4,@4,@2,@1],
+                      @[@1,@2,@6,@6,@2,@1],
+                      @[@1,@0,@4,@4,@0,@1],
                       @[@2,@4,@0,@0,@4,@2],
-                      @[@4,@0,@3,@3,@0,@4]];
+                      @[@4,@2,@3,@3,@2,@4]];
+            break;
+        case 6:
+            level = @[@[@1,@6,@2,@2,@6,@7],
+                      @[@1,@4,@1,@1,@4,@1],
+                      @[@2,@1,@0,@0,@1,@2],
+                      @[@1,@4,@3,@3,@4,@1],
+                      @[@2,@1,@4,@4,@1,@2],
+                      @[@1,@0,@0,@0,@0,@1]];
             break;
         default:
             break;

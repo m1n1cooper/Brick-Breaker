@@ -35,11 +35,11 @@
 		182A5FB81949D70D00076607 /* MenuPanel@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FA61949D70D00076607 /* MenuPanel@2x.png */; };
 		182A5FB91949D70D00076607 /* Paddle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FA71949D70D00076607 /* Paddle@2x.png */; };
 		182A5FBA1949D70D00076607 /* PaddleRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FA81949D70D00076607 /* PaddleRed@2x.png */; };
-		182A5FBB1949D70D00076607 /* Pause.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FA91949D70D00076607 /* Pause.png */; };
+		182A5FBB1949D70D00076607 /* Pause@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FA91949D70D00076607 /* Pause@2x.png */; };
 		182A5FBC1949D70D00076607 /* PurpleSquare@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAA1949D70D00076607 /* PurpleSquare@2x.png */; };
 		182A5FBD1949D70D00076607 /* PurpleSquareSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAB1949D70D00076607 /* PurpleSquareSelected@2x.png */; };
-		182A5FBE1949D70D00076607 /* Resume.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAC1949D70D00076607 /* Resume.png */; };
-		182A5FBF1949D70D00076607 /* Start.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAD1949D70D00076607 /* Start.png */; };
+		182A5FBE1949D70D00076607 /* Resume@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAC1949D70D00076607 /* Resume@2x.png */; };
+		182A5FBF1949D70D00076607 /* Start@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FAD1949D70D00076607 /* Start@2x.png */; };
 		182A5FC51949DE4E00076607 /* JTBrick.m in Sources */ = {isa = PBXBuildFile; fileRef = 182A5FC41949DE4E00076607 /* JTBrick.m */; };
 		182A5FCD194A0C1500076607 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FCC194A0C1500076607 /* Main.storyboard */; };
 		182A5FD0194A21C200076607 /* BrickGreenExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 182A5FCE194A21C200076607 /* BrickGreenExplosion.sks */; };
@@ -47,6 +47,7 @@
 		18AC84BA194AF233008F0BD4 /* BrickRedExplosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84B9194AF233008F0BD4 /* BrickRedExplosion.sks */; };
 		18AC84BD194AF41C008F0BD4 /* BrickRed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84BB194AF41C008F0BD4 /* BrickRed@2x.png */; };
 		18AC84BE194AF41C008F0BD4 /* BrickRedCracked@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */; };
+		18AC84C2194AFC49008F0BD4 /* JTMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AC84C1194AFC49008F0BD4 /* JTMenu.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,11 +95,11 @@
 		182A5FA61949D70D00076607 /* MenuPanel@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "MenuPanel@2x.png"; sourceTree = "<group>"; };
 		182A5FA71949D70D00076607 /* Paddle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Paddle@2x.png"; sourceTree = "<group>"; };
 		182A5FA81949D70D00076607 /* PaddleRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PaddleRed@2x.png"; sourceTree = "<group>"; };
-		182A5FA91949D70D00076607 /* Pause.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Pause.png; sourceTree = "<group>"; };
+		182A5FA91949D70D00076607 /* Pause@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Pause@2x.png"; sourceTree = "<group>"; };
 		182A5FAA1949D70D00076607 /* PurpleSquare@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PurpleSquare@2x.png"; sourceTree = "<group>"; };
 		182A5FAB1949D70D00076607 /* PurpleSquareSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PurpleSquareSelected@2x.png"; sourceTree = "<group>"; };
-		182A5FAC1949D70D00076607 /* Resume.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Resume.png; sourceTree = "<group>"; };
-		182A5FAD1949D70D00076607 /* Start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Start.png; sourceTree = "<group>"; };
+		182A5FAC1949D70D00076607 /* Resume@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Resume@2x.png"; sourceTree = "<group>"; };
+		182A5FAD1949D70D00076607 /* Start@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Start@2x.png"; sourceTree = "<group>"; };
 		182A5FC31949DE4E00076607 /* JTBrick.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTBrick.h; sourceTree = "<group>"; };
 		182A5FC41949DE4E00076607 /* JTBrick.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTBrick.m; sourceTree = "<group>"; };
 		182A5FCC194A0C1500076607 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -107,6 +108,8 @@
 		18AC84B9194AF233008F0BD4 /* BrickRedExplosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = BrickRedExplosion.sks; sourceTree = "<group>"; };
 		18AC84BB194AF41C008F0BD4 /* BrickRed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrickRed@2x.png"; sourceTree = "<group>"; };
 		18AC84BC194AF41C008F0BD4 /* BrickRedCracked@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "BrickRedCracked@2x.png"; sourceTree = "<group>"; };
+		18AC84C0194AFC49008F0BD4 /* JTMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JTMenu.h; sourceTree = "<group>"; };
+		18AC84C1194AFC49008F0BD4 /* JTMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JTMenu.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -175,6 +178,8 @@
 				182A5FCC194A0C1500076607 /* Main.storyboard */,
 				182A5F791949D6ED00076607 /* JTMyScene.h */,
 				182A5F7A1949D6ED00076607 /* JTMyScene.m */,
+				18AC84C0194AFC49008F0BD4 /* JTMenu.h */,
+				18AC84C1194AFC49008F0BD4 /* JTMenu.m */,
 				182A5FC31949DE4E00076607 /* JTBrick.h */,
 				182A5FC41949DE4E00076607 /* JTBrick.m */,
 				182A5F7E1949D6ED00076607 /* Images.xcassets */,
@@ -232,11 +237,11 @@
 				182A5FA61949D70D00076607 /* MenuPanel@2x.png */,
 				182A5FA71949D70D00076607 /* Paddle@2x.png */,
 				182A5FA81949D70D00076607 /* PaddleRed@2x.png */,
-				182A5FA91949D70D00076607 /* Pause.png */,
+				182A5FA91949D70D00076607 /* Pause@2x.png */,
 				182A5FAA1949D70D00076607 /* PurpleSquare@2x.png */,
 				182A5FAB1949D70D00076607 /* PurpleSquareSelected@2x.png */,
-				182A5FAC1949D70D00076607 /* Resume.png */,
-				182A5FAD1949D70D00076607 /* Start.png */,
+				182A5FAC1949D70D00076607 /* Resume@2x.png */,
+				182A5FAD1949D70D00076607 /* Start@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -335,7 +340,7 @@
 				182A5FB91949D70D00076607 /* Paddle@2x.png in Resources */,
 				182A5FCD194A0C1500076607 /* Main.storyboard in Resources */,
 				182A5FBC1949D70D00076607 /* PurpleSquare@2x.png in Resources */,
-				182A5FBE1949D70D00076607 /* Resume.png in Resources */,
+				182A5FBE1949D70D00076607 /* Resume@2x.png in Resources */,
 				182A5FB81949D70D00076607 /* MenuPanel@2x.png in Resources */,
 				182A5FAE1949D70D00076607 /* Background@2x.png in Resources */,
 				182A5FB51949D70D00076607 /* Button@2x.png in Resources */,
@@ -343,10 +348,10 @@
 				18AC84BA194AF233008F0BD4 /* BrickRedExplosion.sks in Resources */,
 				182A5FB71949D70D00076607 /* HeartFull@2x.png in Resources */,
 				182A5FBA1949D70D00076607 /* PaddleRed@2x.png in Resources */,
-				182A5FBB1949D70D00076607 /* Pause.png in Resources */,
+				182A5FBB1949D70D00076607 /* Pause@2x.png in Resources */,
 				182A5FD1194A21C200076607 /* spark.png in Resources */,
 				182A5FBD1949D70D00076607 /* PurpleSquareSelected@2x.png in Resources */,
-				182A5FBF1949D70D00076607 /* Start.png in Resources */,
+				182A5FBF1949D70D00076607 /* Start@2x.png in Resources */,
 				182A5FB61949D70D00076607 /* HeartEmpty@2x.png in Resources */,
 				18AC84BD194AF41C008F0BD4 /* BrickRed@2x.png in Resources */,
 				182A5FAF1949D70D00076607 /* BallBlue@2x.png in Resources */,
@@ -376,6 +381,7 @@
 				182A5F721949D6ED00076607 /* JTAppDelegate.m in Sources */,
 				182A5FC51949DE4E00076607 /* JTBrick.m in Sources */,
 				182A5F781949D6ED00076607 /* JTViewController.m in Sources */,
+				18AC84C2194AFC49008F0BD4 /* JTMenu.m in Sources */,
 				182A5F6E1949D6ED00076607 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

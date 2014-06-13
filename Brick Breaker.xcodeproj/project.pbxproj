@@ -177,10 +177,8 @@
 				182A5F7A1949D6ED00076607 /* JTMyScene.m */,
 				182A5FC31949DE4E00076607 /* JTBrick.h */,
 				182A5FC41949DE4E00076607 /* JTBrick.m */,
-				18AC84B9194AF233008F0BD4 /* BrickRedExplosion.sks */,
-				182A5FCE194A21C200076607 /* BrickGreenExplosion.sks */,
-				182A5FCF194A21C200076607 /* spark.png */,
 				182A5F7E1949D6ED00076607 /* Images.xcassets */,
+				18AC84BF194AF880008F0BD4 /* Partical Effects */,
 				182A5F9B1949D70D00076607 /* Images */,
 				182A5F681949D6ED00076607 /* Supporting Files */,
 			);
@@ -241,6 +239,16 @@
 				182A5FAD1949D70D00076607 /* Start.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		18AC84BF194AF880008F0BD4 /* Partical Effects */ = {
+			isa = PBXGroup;
+			children = (
+				18AC84B9194AF233008F0BD4 /* BrickRedExplosion.sks */,
+				182A5FCE194A21C200076607 /* BrickGreenExplosion.sks */,
+				182A5FCF194A21C200076607 /* spark.png */,
+			);
+			name = "Partical Effects";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

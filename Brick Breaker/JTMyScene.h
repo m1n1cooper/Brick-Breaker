@@ -7,6 +7,8 @@
 //
 
 #import <SpriteKit/SpriteKit.h>
+#import <iAd/iAd.h>
+#import <UIKit/UIKit.h>
 
 @interface JTMyScene : SKScene <SKPhysicsContactDelegate>
 

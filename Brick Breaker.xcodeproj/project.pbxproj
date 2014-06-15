@@ -333,6 +333,9 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "James Topham";
 				TargetAttributes = {
+					182A5F5B1949D6ED00076607 = {
+						DevelopmentTeam = 4LF85F5XM7;
+					};
 					182A5F831949D6ED00076607 = {
 						TestTargetID = 182A5F5B1949D6ED00076607;
 					};
@@ -535,6 +538,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Brick Breaker/Brick Breaker-Prefix.pch";
 				INFOPLIST_FILE = "Brick Breaker/Brick Breaker-Info.plist";
@@ -549,6 +553,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Brick Breaker/Brick Breaker-Prefix.pch";
 				INFOPLIST_FILE = "Brick Breaker/Brick Breaker-Info.plist";

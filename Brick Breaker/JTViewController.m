@@ -26,6 +26,13 @@
     
     // Present the scene.
     [skView presentScene:scene];
+    
+    _bannerView = [[ADBannerView alloc] initWithAdType:ADAdTypeBanner];
+    _bannerView.frame = CGRectMake(0, self.view.frame.size.height - _bannerView.frame.size.height, self.view.frame.size.width, _bannerView.frame.size.height);
+    _bannerView.autoresizingMask = UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleWidth;
+    _bannerView.delegate = self;
+    [self.view addSubview:_bannerView];
+    
 }
 
 - (BOOL)shouldAutorotate
@@ -38,19 +45,26 @@
     return YES;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
-{
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        return UIInterfaceOrientationMaskAllButUpsideDown;
-    } else {
-        return UIInterfaceOrientationMaskAll;
-    }
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Release any cached data, images, etc that aren't in use.
+}
+
+#pragma mark - iAd Methods
+- (void)bannerViewDidLoadAd:(ADBannerView *)banner {
+    _bannerView.hidden = NO;
+}
+
+- (void)bannerView:(ADBannerView *)banner didFailToReceiveAdWithError:(NSError *)error {
+    _bannerView.hidden = YES;
+}
+
+- (BOOL)bannerViewActionShouldBegin:(ADBannerView *)banner willLeaveApplication:(BOOL)willLeave {
+    return YES;
+}
+
+- (void)bannerViewActionDidFinish:(ADBannerView *)banner {
 }
 
 @end

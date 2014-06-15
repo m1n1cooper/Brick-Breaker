@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <SpriteKit/SpriteKit.h>
+#import <iAd/iAd.h>
 
-@interface JTViewController : UIViewController
+@interface JTViewController : UIViewController <ADBannerViewDelegate>
+
+@property (nonatomic) ADBannerView *bannerView;
 
 @end
